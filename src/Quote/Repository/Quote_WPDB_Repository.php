@@ -20,7 +20,7 @@ use Gin0115\PC_PF_Example1\Quote\Quote_Repository;
 
 class Quote_WPDB_Repository implements Quote_Repository {
 
-	/** @var wpdb */
+	/** @var \wpdb */
 	protected $wpdb;
 
 	/**
@@ -33,7 +33,7 @@ class Quote_WPDB_Repository implements Quote_Repository {
 	/**
 	 * Access to the app general settings
 	 *
-	 * @var App_Settings
+	 * @var App_Config
 	 */
 	protected $app_config;
 
@@ -59,7 +59,7 @@ class Quote_WPDB_Repository implements Quote_Repository {
 		);
 
 		return ! empty( $quote )
-			? $this->populate_quote( $quote )
+			? $this->populate_quote( (object) $quote )
 			: null;
 	}
 
@@ -77,7 +77,7 @@ class Quote_WPDB_Repository implements Quote_Repository {
 		);
 
 		// Map all array representations into Quote models.
-		$quotes = array_map( array( $this, 'populate_quote' ), $all_quotes );
+		$quotes = array_map( array( $this, 'populate_quote' ), (array) $all_quotes );
 
 		return count( $quotes ) >= $quote_count
 			? array_slice( $quotes, 0, $quote_count )
@@ -87,10 +87,10 @@ class Quote_WPDB_Repository implements Quote_Repository {
 	/**
 	 * Maps a quote from an array to Quote model.
 	 *
-	 * @param stdClass $quote
+	 * @param object $quote
 	 * @return Quote
 	 */
-	private function populate_quote( stdClass $quote ): Quote {
+	private function populate_quote( $quote ): Quote {
 		return $this->quote_factory->from_stdclass( $quote );
 	}
 }

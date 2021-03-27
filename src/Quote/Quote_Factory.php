@@ -33,10 +33,10 @@ class Quote_Factory {
 	 * Returns a populated quote from a stdclass that contains
 	 * body and autor properties.
 	 *
-	 * @param stdClass $class
+	 * @param object $class
 	 * @return Quote
 	 */
-	public function from_stdclass( stdClass $class ): Quote {
+	public function from_stdclass( $class ): Quote {
 		return new Quote(
 			\property_exists( $class, 'body' ) ? $class->body : '',
 			\property_exists( $class, 'author' ) ? $class->author : '',
