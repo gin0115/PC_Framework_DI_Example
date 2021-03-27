@@ -33,13 +33,13 @@ class Quote_Controller implements Registerable {
 	protected $view;
 
 	public function __construct(
-		Quote_Repository $quote_respoitory, 
+		Quote_Repository $quote_respoitory,
 		View $view
 	) {
 		// Even though we are passing an interface here, we can define
 		// which repository to use in the depenedency.php file.
 		$this->quote_respoitory = $quote_respoitory;
-		
+
 		// View has its own internal depenency (Renderable) which is what is
 		// used to render html. By default we use the PHP engine, but can easily
 		// be done using Blade, Twig, Mustache and any others.
@@ -76,7 +76,7 @@ class Quote_Controller implements Registerable {
 		$quote = $this->quote_respoitory->get_quote();
 
 		// If no quote returned, jsut reutrn the inital comment as is.
-		if($quote === null){
+		if ( $quote === null ) {
 			return $content;
 		}
 

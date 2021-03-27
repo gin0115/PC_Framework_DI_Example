@@ -32,8 +32,8 @@ return array(
 			// which has wpdb as a dependency
 			wpdb::class       => $GLOBALS['wpdb'],
 
-			// Due to where this file is loaded, we have access to $config.
-			App_Config::class => $config,
+			// Due to how this is loaded, we need to use the app to get the current config.
+			App_Config::class => App::retreive( 'config' ),
 		),
 
 
