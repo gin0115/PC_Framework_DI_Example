@@ -81,12 +81,11 @@ class Quote_Object_Repository implements Quote_Repository {
 	/**
 	 * Maps a quote from an array to Quote model.
 	 *
-	 * @param array $quote
+	 * @param array{body:string,author:string} $quote
 	 * @return Quote
 	 */
 	private function populate_quote( array $quote ): Quote {
 		return $this->quote_factory->create( $quote['body'], $quote['author'] );
 	}
-
 
 }
