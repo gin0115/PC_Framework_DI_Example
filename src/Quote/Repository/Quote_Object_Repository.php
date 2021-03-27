@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Gin0115\PC_PF_Example1\Quote\Repository;
 
+use Gin0115\PC_PF_Example1\Quote\Quote;
+use Gin0115\PC_PF_Example1\Quote\Quote_Factory;
 use Gin0115\PC_PF_Example1\Quote\Quote_Repository;
 
 class Quote_Object_Repository implements Quote_Repository {
@@ -24,10 +26,17 @@ class Quote_Object_Repository implements Quote_Repository {
 	protected $quotes = array();
 
 	/**
-	 * Popultes the internal collection.
-	 * @todo Pass Quote factory
+	 * Constructs our quote models.
+	 *
+	 * @var Quote_Factory
 	 */
-	public function __construct() {
+	protected $quote_factory;
+
+	public function __construct( Quote_Factory $quote_factory ) {
+
+		$this->quote_factory = $quote_factory;
+
+		// Popultes the internal collection.
 		$this->quotes = array(
 			array(
 				'body'   => 'Quote 1',
@@ -76,7 +85,7 @@ class Quote_Object_Repository implements Quote_Repository {
 	 * @return Quote
 	 */
 	private function populate_quote( array $quote ): Quote {
-		return $this->Quote_Factory->create( $quote['body'], $quote['author'] );
+		return $this->quote_factory->create( $quote['body'], $quote['author'] );
 	}
 
 
