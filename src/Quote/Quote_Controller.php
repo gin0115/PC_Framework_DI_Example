@@ -62,8 +62,11 @@ class Quote_Controller implements Registerable {
 			return $content;
 		}
 
+		// Get a quote from whatever repository
 		$quote = $this->quote_respoitory->get_quote();
 
+		// Generate the HTML for the quotes view.
+		// The template can be found
 		$quote_html = $this->view->render(
 			'quote/quote',
 			array(
