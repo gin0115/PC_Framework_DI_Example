@@ -73,7 +73,7 @@ class Quote_Object_Repository implements Quote_Repository {
 		// Map all array representations into Quote models.
 		$quotes = array_map( array( $this, 'populate_quote' ), $this->quotes );
 
-		return count( $quotes ) <= $quote_count
+		return count( $quotes ) >= $quote_count
 			? array_slice( $quotes, 0, $quote_count )
 			: array_pad( $quotes, $quote_count, null );
 	}
