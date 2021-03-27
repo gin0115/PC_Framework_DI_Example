@@ -44,15 +44,16 @@ class Test_Quote_Object_Repository extends WP_UnitTestCase {
 
 		$this->assertCount( 5, $quotes_more );
 		$this->assertCount( 3, array_filter( $quotes_more, array( $this, 'is_quote' ) ) );
+		$this->assertCount( 2, array_filter( $quotes_more, 'is_null' ) );
 
 	}
 
-    /**
-     * Validates if a valid quote.
-     *
-     * @param mixed $quote
-     * @return bool
-     */
+	/**
+	 * Validates if a valid quote.
+	 *
+	 * @param mixed $quote
+	 * @return bool
+	 */
 	protected function is_quote( $quote ): bool {
 		return is_a( $quote, Quote::class );
 	}

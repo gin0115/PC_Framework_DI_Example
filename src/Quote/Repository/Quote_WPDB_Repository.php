@@ -53,9 +53,13 @@ class Quote_WPDB_Repository implements Quote_Repository {
 	 * @return Quote|null
 	 */
 	public function get_quote(): ?Quote {
+
         // phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
 		$quote = $this->wpdb->get_row(
-			sprintf( 'SELECT * FROM %s LIMIT 1;', $this->app_config->db_tables( 'quote' ) )
+			sprintf(
+				'SELECT * FROM %s LIMIT 1;',
+				$this->app_config->db_tables( 'quote' )
+			)
 		);
 
 		return ! empty( $quote )

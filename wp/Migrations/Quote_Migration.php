@@ -106,7 +106,7 @@ SQL;
 	}
 
 	/**
-	 * Truncates the table.
+	 * Drops the table.
 	 *
 	 * @return void
 	 */

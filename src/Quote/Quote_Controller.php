@@ -95,4 +95,5 @@ class Quote_Controller implements Registerable {
 		return ( is_string( $quote_html ) ? wp_kses_post( $quote_html ) : '' )
 			. $content;
 	}
+
 }
