@@ -12,7 +12,6 @@
  * Text Domain:     gin0115_pcpf_example1
  */
 
-use PinkCrab\Core\Application\App;
 use Gin0115\WP\PC_PF_Example1\Activation;
 use Gin0115\WP\PC_PF_Example1\Deactivation;
 
@@ -24,6 +23,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/bootstrap.php';
 
 // Registers all of our plugin lifecylce hooks.
-// Calling App::make(ClassName::class) will use the DI Container to create that object.
-register_activation_hook( __FILE__, array( App::make( Activation::class ), 'activate' ) );
-register_deactivation_hook( __FILE__, array( App::make( Deactivation::class ), 'deactivate' ) );
+register_activation_hook(
+	__FILE__,
+	array( new Activation( $GLOBALS['wpdb'] ), 'activate' )
+);
+
+register_deactivation_hook(
+	__FILE__,
+	array( new Deactivation(), 'deactivate' )
+);
