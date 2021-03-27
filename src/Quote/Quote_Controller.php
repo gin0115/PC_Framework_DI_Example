@@ -81,7 +81,6 @@ class Quote_Controller implements Registerable {
 		}
 
 		// Generate the HTML for the quotes view.
-		// The template can be found
 		$quote_html = $this->view->render(
 			'quote/quote', // File is /views/quote/quote.php
 			array( // Sets these as variables for the template

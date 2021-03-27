@@ -10,8 +10,10 @@
 
 use PinkCrab\Core\Application\App;
 use PinkCrab\Core\Interfaces\Renderable;
+use PinkCrab\Core\Application\App_Config;
 use PinkCrab\Core\Services\View\PHP_Engine;
 use Gin0115\PC_PF_Example1\Quote\Quote_Repository;
+use Gin0115\PC_PF_Example1\Quote\Repository\Quote_WPDB_Repository;
 use Gin0115\PC_PF_Example1\Quote\Repository\Quote_Object_Repository;
 
 return array(
@@ -32,8 +34,8 @@ return array(
 			// which has wpdb as a dependency
 			wpdb::class       => $GLOBALS['wpdb'],
 
-			// Due to how this is loaded, we need to use the app to get the current config.
-			App_Config::class => App::retreive( 'config' ),
+			// We have access to te global config variable due to how is loaded.
+			App_Config::class => $config,
 		),
 
 
@@ -47,7 +49,8 @@ return array(
 	 * This is used as a parameter to the Quote_Controller.
 	 */
 	Quote_Repository::class => array(
-		'instanceOf' => Quote_Object_Repository::class,
+		// 'instanceOf' => Quote_Object_Repository::class,
+		'instanceOf' => Quote_WPDB_Repository::class,
 	),
 
 );
